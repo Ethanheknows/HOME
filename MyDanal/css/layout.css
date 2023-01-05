@@ -29,11 +29,11 @@ p {
   padding-right: 80px;
 
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   /* 헤더 안에서 가운데 정렬 */
   position: absolute;
+  width: 100%;
   z-index: 99;
   box-sizing: border-box;
 }
@@ -43,38 +43,62 @@ header h1 a img {
 }
 
 .gnb__bar {
-  background-color: brown;
   font-size: 20px;
-  font-weight: 500;
   display: flex;
-  flex-direction: row;
-  padding-top: 23px;
-  padding-bottom: 23px;
 }
 .gnb__bar > li {
   position: relative;
 }
 .gnb__bar > li > a {
-  background-color: aqua;
-  transition: color 0.5s ease-out;
+  display: flex;
+  transition: color 0.25s ease-out;
   padding: 23px 75px;
 }
-.gnb__bar > li a:hover {
-  color: blue;
+.underline-hover-effect {
+  padding-bottom: 0.5rem; /* defines the space between text and underline */
 }
-.list {
+.underline-hover-effect::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background-color: rgb(10, 137, 255);
+  transition: width 0.25s ease-out;
+}
+.underline-hover-effect:hover::before {
+  width: 100%;
+} /*언더라인 코드*/
+
+.gnb__bar > li a:hover {
+  color: rgb(10, 137, 255);
+}
+
+.gnb__bar:hover li .list {
+  opacity: 1;
+  pointer-events: auto;
+}
+/*글로벌바에 걸면 전부 나오고 li에만 호버걸면 하나만 나옴*/
+
+.gnb__bar > li .list {
   background-color: #fff;
   color: #666;
   padding: 10px;
   font-weight: 300;
-  position: fixed;
+  position: absolute;
   box-sizing: border-box;
+  width: 100%;
+  height: 300px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
 }
 
 .list li a {
   display: block;
   padding: 10px;
-  transition: color 0.5s ease-out;
 }
 .visual__video {
   width: 100%;
